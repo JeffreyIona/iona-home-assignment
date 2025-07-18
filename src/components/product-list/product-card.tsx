@@ -1,3 +1,4 @@
+import { formatPrice } from '@/lib/helpers/price';
 import productSlug from '@/lib/helpers/product-slug';
 import { Product } from '@/lib/types';
 import Image from 'next/image';
@@ -9,7 +10,7 @@ type ProductCardProps = {
 
 export default function ProductCard({ product }:ProductCardProps) {
   return (
-    <Link href={`/products/${productSlug(product)}`} className="rounded-lg block group text-sm bg-white overflow-hidden border border-gray-200">
+    <Link href={`/products/${productSlug(product)}`} className="rounded-lg flex flex-col group text-sm bg-white overflow-hidden border border-gray-200">
       <div className="relative aspect-square w-full overflow-hidden bg-gray-100">
         <Image
           className="aspect-square w-full rounded-lg bg-gray-100 object-cover group-hover:opacity-75"
@@ -28,14 +29,14 @@ export default function ProductCard({ product }:ProductCardProps) {
         )}
       </div>
 
-      <div className='p-4'>
-        <h3 className="text-gray-900 font-semibold">{product.title}</h3>
-        {product.brand && (
-          <p className="text-gray-500 italic">{product.brand}</p>
-        )}
-        <div className='flex gap-3'>
-          <p className="mt-2 font-medium text-gray-900">$ {product.price}</p>
+      <div className='flex-1 p-4 flex flex-col gap-2 items-between'>
+        <div className='flex-1'>
+          <h3 className="text-gray-900 font-semibold">{product.title}</h3>
+          {product.brand && (
+            <p className="text-gray-500 italic">{product.brand}</p>
+          )}
         </div>
+        <p className="font-medium text-gray-900">{formatPrice(product.price)}</p>
       </div>
     </Link>
   )
