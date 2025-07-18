@@ -1,3 +1,7 @@
+import { PRODUCT_LIMIT } from "@/lib/constants";
+import { QueryParams } from "@/lib/types";
+import qs from 'query-string';
+
 const sortQueries = {
   'titleAsc': {
     'sortBy': 'title',
@@ -37,4 +41,16 @@ export const getSortQuery = (sortBy?: string) => {
   const key = getValidKey(sortBy);
   if (!key) return undefined;
   return sortQueries[key];
+}
+
+export const getPaginationQuery = (page?: string) => {
+  return {
+    skip: (page && !isNaN(Number(page))) ? Number(page) * PRODUCT_LIMIT : undefined,
+    limit: PRODUCT_LIMIT
+  };
+}
+
+export const getFilterParams = (query: QueryParams = {}) => {
+  const params = qs.stringify(query, { skipNull: true, skipEmptyString: true });
+  return params ? `?${params}` : '';
 }

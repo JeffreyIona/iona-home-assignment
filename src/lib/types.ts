@@ -54,3 +54,5 @@ export type ProductResponse = {
 }
 
 export type SortKey = keyof typeof SORT_OPTIONS;
+
+export type QueryParams = Record<string, string | number | boolean | undefined>;

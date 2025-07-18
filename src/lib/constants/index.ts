@@ -9,8 +9,11 @@ export const SORT_OPTIONS = {
   discountDesc: "Discount: High to Low",
 };
 
-export const SORT_KEYS: string[] = Object.keys(SORT_OPTIONS);
+export const SORT_KEYS = Object.keys(SORT_OPTIONS);
 
 export const LOCALES = {
   en: "English"
 };
+
+export const PRODUCT_LIMIT = 16;
+

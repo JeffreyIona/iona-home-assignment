@@ -1,6 +1,6 @@
 import ProductList from "@/components/product-list";
 import { fetchCategories, fetchProducts } from "./actions";
-import { getSortQuery } from "@/lib/helpers/filters";
+import { getPaginationQuery, getSortQuery } from "@/lib/helpers/filters";
 
 type Props = {
   searchParams: {
@@ -9,9 +9,12 @@ type Props = {
 };
 
 export default async function Home({ searchParams }: Props) {
-  const { sortBy } = await searchParams;
+  const { page, sortBy } = await searchParams;
   const categories = await fetchCategories();
-  const productResponse = await fetchProducts(getSortQuery(sortBy));
+  const productResponse = await fetchProducts({
+    ...getSortQuery(sortBy),
+    ...getPaginationQuery(page),
+  });
 
   return (
     <ProductList categories={categories ?? []} products={productResponse.products ?? []} />

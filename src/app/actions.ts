@@ -1,7 +1,8 @@
 'use server'
 
 import { API_BASE_URL } from "@/lib/constants"
-import { Category, ProductResponse } from "@/lib/types";
+import { getFilterParams } from "@/lib/helpers/filters";
+import { Category, ProductResponse, QueryParams } from "@/lib/types";
 
 export const fetchCategories = async (): Promise<Category[]> => {
   try {
@@ -37,11 +38,11 @@ export const fetchCategoryList = async (): Promise<string[]> => {
   }
 };
 
-export const fetchProductsByCategory = async (category: string, query?: Record<string, string>): Promise<ProductResponse> => {
-  const params = new URLSearchParams(query);
-
+export const fetchProductsByCategory = async (category: string, query: QueryParams = {}): Promise<ProductResponse> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/products/category/${category}?${params.toString()}`, {
+    const filters = getFilterParams(query);
+
+    const response = await fetch(`${API_BASE_URL}/products/category/${category}${filters}`, {
       cache: "no-store",
     });
 
@@ -57,11 +58,11 @@ export const fetchProductsByCategory = async (category: string, query?: Record<s
   }
 };
 
-export const fetchProducts = async (query?: Record<string, string>):Promise<ProductResponse> => {
-  const params = new URLSearchParams(query);
-
+export const fetchProducts = async (query: QueryParams = {}): Promise<ProductResponse> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/products?${params.toString()}`, {
+    const filters = getFilterParams(query);
+
+    const response = await fetch(`${API_BASE_URL}/products${filters}`, {
       cache: "no-store",
     });
 
@@ -76,11 +77,11 @@ export const fetchProducts = async (query?: Record<string, string>):Promise<Prod
   }
 }
 
-export const fetchProductSearch = async (query?: Record<string, string>):Promise<ProductResponse> => {
-  const params = new URLSearchParams(query);
-
+export const fetchProductSearch = async (query: QueryParams = {}): Promise<ProductResponse> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/products/search?${params.toString()}`, {
+    const filters = getFilterParams(query);
+
+    const response = await fetch(`${API_BASE_URL}/products/search${filters}`, {
       cache: "no-store",
     });
 

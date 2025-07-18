@@ -1,5 +1,5 @@
 import { fetchProductSearch } from "../actions";
-import { getSortQuery } from "@/lib/helpers/filters";
+import { getPaginationQuery, getSortQuery } from "@/lib/helpers/filters";
 import SearchList from "@/components/search-list";
 
 type Props = {
@@ -9,10 +9,11 @@ type Props = {
 };
 
 export default async function SearchPage({ searchParams }: Props) {
-  const { q, sortBy } = await searchParams;
+  const { q, page, sortBy } = await searchParams;
   const productResponse = await fetchProductSearch({
     ...getSortQuery(sortBy),
-    q: q || "",
+    ...getPaginationQuery(page),
+    q,
   });
 
   return (

@@ -1,7 +1,7 @@
 import ProductList from "@/components/product-list";
 import { fetchCategories, fetchCategoryList, fetchProductsByCategory } from "../actions";
 import { notFound } from "next/navigation";
-import { getSortQuery } from "@/lib/helpers/filters";
+import { getPaginationQuery, getSortQuery } from "@/lib/helpers/filters";
 
 type Props = {
   params: {
@@ -14,7 +14,7 @@ type Props = {
 
 export default async function CategoryPage({ params, searchParams }: Props) {
   const { category } = await params;
-  const { sortBy } = await searchParams;
+  const { page, sortBy } = await searchParams;
   const validCategories = await fetchCategoryList();
 
   if (!validCategories.includes(category)) {
@@ -22,7 +22,10 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   }
 
   const categories = await fetchCategories();
-  const productResponse = await fetchProductsByCategory(category, getSortQuery(sortBy));
+  const productResponse = await fetchProductsByCategory(category, {
+    ...getSortQuery(sortBy),
+    ...getPaginationQuery(page),
+  });
 
   return (
     <ProductList category={category} categories={categories ?? []} products={productResponse.products ?? []} />
