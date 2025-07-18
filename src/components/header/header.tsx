@@ -7,7 +7,6 @@ import {
 } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Logo from '../ui/logo'
-import { useSearchParams } from 'next/navigation'
 import Search from '../ui/search/search'
 
 const navigation = [
