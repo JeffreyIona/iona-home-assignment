@@ -13,7 +13,7 @@ export default function FilterSort() {
         <select
           className="block w-full rounded-md border-gray-300 py-2 px-2 text-right text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
           value={filters.sortBy}
-          onChange={(e) => updateFilter({ sortBy: e.target.value as SortKey })}
+          onChange={(e) => updateFilter({ sortBy: e.target.value as SortKey, page: undefined })}
         >
           <option value="">Sort</option>
           {Object.keys(SORT_OPTIONS).map((key) => (
@@ -45,7 +45,7 @@ export default function FilterSort() {
                 <button
                   type='button'
                   className='text-gray-500 block w-full text-left px-4 py-2 text-sm data-focus:bg-gray-100 data-focus:outline-hidden'
-                  onClick={() => updateFilter({ sortBy: undefined })}
+                  onClick={() => updateFilter({ sortBy: undefined, page: undefined })}
                 >
                   Sort
                 </button>
@@ -58,7 +58,7 @@ export default function FilterSort() {
                       filters.sortBy === key ? 'font-medium text-gray-900' : 'text-gray-500',
                       'block w-full text-left px-4 py-2 text-sm data-focus:bg-gray-100 data-focus:outline-hidden',
                     )}
-                    onClick={() => updateFilter({ sortBy: key as SortKey })}
+                    onClick={() => updateFilter({ sortBy: key as SortKey, page: undefined })}
                   >
                     {SORT_OPTIONS[key as SortKey]}
                   </button>

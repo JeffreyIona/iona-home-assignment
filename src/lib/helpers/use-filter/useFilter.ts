@@ -1,16 +1,17 @@
 import { SORT_OPTIONS } from "@/lib/constants";
 import { SortKey } from "@/lib/types";
-import { filter } from "lodash";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import numeric from "../numeric";
 
 type FilterProps = {
   sortBy?: SortKey;
   page?: number;
+  q?: string | null;
   // Add more filter properties as needed
 }
 
-const filterKeys = ['sortBy', 'page'] as const;
+const filterKeys = ['sortBy', 'page', 'q'] as const;
 export type FilterKey = (typeof filterKeys)[number];
 
 const getSortKey = (key: string | null): SortKey | undefined => {
@@ -23,7 +24,8 @@ export default function useFilter() {
   const searchParams = useSearchParams();
   const [filters, setFilters] = useState<FilterProps>({
     sortBy: getSortKey(searchParams.get("sortBy")),
-    page: Number(searchParams.get("page")),
+    page: numeric(searchParams.get("page")),
+    q: searchParams.get("q"),
   });
 
   const updateFilter = (newFilters: FilterProps) => {
@@ -43,9 +45,21 @@ export default function useFilter() {
       params.set("page", String(updateFilter.page));
     }
 
+    if (updateFilter.q) {
+      params.set("q", updateFilter.q);
+    }
+
     setFilters(updateFilter);
     router.push(`?${params.toString()}`, { scroll: false });
   };
+
+  useEffect(() => {
+    setFilters({
+      sortBy: getSortKey(searchParams.get("sortBy")),
+      page: numeric(searchParams.get("page")),
+      q: searchParams.get("q"),
+    });
+  }, [searchParams]);
 
   return { filters, updateFilter };
 }

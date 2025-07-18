@@ -6,14 +6,16 @@ import CategoryList from './category-list'
 import FilterSort from './filter-sort'
 import { shop } from '@/lib/contents'
 import Banner from '../banner'
+import Pagination from '../pagination'
 
 type ProductListProps = {
   category?: string;
   categories: Category[];
   products: Product[];
+  totalPages?: number;
 }
 
-export default function ProductList({ category, categories = [], products = [] }:ProductListProps) {
+export default function ProductList({ category, categories = [], products = [], totalPages = 1 }:ProductListProps) {
   return (
     <section>
       <div className='bg-white'>
@@ -52,6 +54,8 @@ export default function ProductList({ category, categories = [], products = [] }
                   <ProductCard key={product.id} product={product}/>
                 ))}
               </div>
+
+              <Pagination totalPages={totalPages} />
             </div>
           </div>
         </div>

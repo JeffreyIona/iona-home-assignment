@@ -1,6 +1,7 @@
 import ProductList from "@/components/product-list";
 import { fetchCategories, fetchProducts } from "./actions";
 import { getPaginationQuery, getSortQuery } from "@/lib/helpers/filters";
+import { PRODUCT_LIMIT } from "@/lib/constants";
 
 type Props = {
   searchParams: {
@@ -17,6 +18,10 @@ export default async function Home({ searchParams }: Props) {
   });
 
   return (
-    <ProductList categories={categories ?? []} products={productResponse.products ?? []} />
+    <ProductList
+      categories={categories ?? []}
+      products={productResponse.products ?? []}
+      totalPages={Math.floor(productResponse.total/PRODUCT_LIMIT)}
+    />
   );
 }

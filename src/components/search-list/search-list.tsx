@@ -4,13 +4,15 @@ import { Product } from "@/lib/types";
 import FilterSort from "../product-list/filter-sort";
 import ProductCard from "../product-list/product-card";
 import { shop } from "@/lib/contents";
+import Pagination from "../pagination";
 
 type ProductListProps = {
   searchQuery?: string;
   products: Product[];
+  totalPages?: number;
 }
 
-export default function SearchList({ searchQuery, products = [] }: ProductListProps) {
+export default function SearchList({ searchQuery, products = [], totalPages = 1 }: ProductListProps) {
   return (
     <section>
       <div className='bg-white'>
@@ -49,6 +51,8 @@ export default function SearchList({ searchQuery, products = [] }: ProductListPr
                 <ProductCard key={product.id} product={product}/>
               ))}
             </div>
+
+            <Pagination totalPages={totalPages} />
           </div>
         </div>
       )}
