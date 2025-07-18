@@ -75,3 +75,22 @@ export const fetchProducts = async (query?: Record<string, string>):Promise<Prod
     throw error;
   }
 }
+
+export const fetchProductSearch = async (query?: Record<string, string>):Promise<ProductResponse> => {
+  const params = new URLSearchParams(query);
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/products/search?${params.toString()}`, {
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch product search results");
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error("Error fetching product search results:", error);
+    throw error;
+  }
+}
