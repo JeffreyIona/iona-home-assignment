@@ -16,6 +16,8 @@ export default function ProductCard({ product }:ProductCardProps) {
           src={product.thumbnail}
           alt={`A picture of ${product.title}`}
           fill
+          sizes='(max-width: 768px) 33vw, (max-width: 1024px) 20vw, 50vw'
+          priority
         />
 
         {product.stock === 0 && (
