@@ -7,7 +7,6 @@ import { shop } from "@/lib/contents";
 
 const inter = Inter({
   subsets: ['latin'],
-  variable: "--font-inter-sans",
   display: 'swap',
 });
 
@@ -24,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} antialiased bg-white`}
+        className={`${inter.className} font-sans antialiased bg-gray-50`}
       >
         <Header />
         <main>{children}</main>
