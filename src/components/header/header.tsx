@@ -8,6 +8,7 @@ import {
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Logo from '../ui/logo'
 import { useSearchParams } from 'next/navigation'
+import Search from '../ui/search/search'
 
 const navigation = [
   { name: 'Account', href: '#' },
@@ -15,7 +16,6 @@ const navigation = [
 ]
 
 export default function Header() {
-  const searchParams = useSearchParams();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
@@ -23,7 +23,15 @@ export default function Header() {
       <header className="bg-white border-b border-b-gray-200">
         <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
           <Logo />
-          <div className="flex lg:hidden">
+          <div className="flex lg:hidden gap-4">
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(true)}
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            >
+              <span className="sr-only">Open search</span>
+              <MagnifyingGlassIcon aria-hidden="true" className="size-6" />
+            </button>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
@@ -34,17 +42,7 @@ export default function Header() {
             </button>
           </div>
           <div className='hidden lg:flex lg:flex-1 lg:max-w-1/2'>
-            <form action="/search" method="get" className="relative flex items-center w-full">
-              <MagnifyingGlassIcon aria-hidden="true" className="absolute left-2.5 h-5 w-5 text-gray-400" />
-              <input
-                type="text"
-                name="q"
-                id="search"
-                defaultValue={searchParams.get('q') || ''}
-                className="z-10 pl-10 block w-full rounded-md border-0 py-1.5 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                placeholder="Search products..."
-              />
-            </form>
+            <Search />
           </div>
           <div className="hidden lg:flex lg:gap-x-12 lg:items-center">
             {navigation.map((item) => (
@@ -53,7 +51,7 @@ export default function Header() {
               </a>
             ))}
             <a href="#" className="text-sm/6 font-semibold text-gray-900">
-              <ShoppingBagIcon aria-hidden="true" className="inline-block mr-1 size-5" />
+              <ShoppingBagIcon aria-hidden="true" className="size-5" />
               <span className="sr-only">Cart</span>
             </a>
           </div>
@@ -74,6 +72,9 @@ export default function Header() {
             </div>
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
+                <div className="py-6">
+                  <Search />
+                </div>
                 <div className="space-y-2 py-6">
                   {navigation.map((item) => (
                     <a

@@ -1,3 +1,6 @@
+import { LOCALES } from "@/lib/constants"
+import { shop } from "@/lib/contents"
+
 const footerNavigation = {
   account: [
     { name: 'Manage Account', href: '#' },
@@ -26,14 +29,16 @@ const footerNavigation = {
   ],
 }
 
+const year = new Date().getFullYear();
+
 export default function Footer() {
   return (
-    <footer aria-labelledby="footer-heading" className="bg-white">
+    <footer aria-labelledby="footer-heading" className="bg-white border-t border-gray-200">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-8 border-t border-gray-200 py-20 sm:grid-cols-2 sm:gap-y-0 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-8 py-20 sm:grid-cols-2 sm:gap-y-0 lg:grid-cols-4">
           <div className="grid grid-cols-1 gap-y-10 lg:col-span-2 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-0">
             <div>
               <h3 className="text-sm font-medium text-gray-900">Account</h3>
@@ -90,10 +95,9 @@ export default function Footer() {
 
         <div className="border-t border-gray-100 py-10 sm:flex sm:items-center sm:justify-between">
           <div className="flex items-center justify-center text-sm text-gray-500">
-            <p>Shipping to Canada ($CAD)</p>
-            <p className="ml-3 border-l border-gray-200 pl-3">English</p>
+            <p>{LOCALES['en']}</p>
           </div>
-          <p className="mt-6 text-center text-sm text-gray-500 sm:mt-0">&copy; 2021 Your Company, Inc.</p>
+          <p className="mt-6 text-center text-sm text-gray-500 sm:mt-0">&copy; {year} {shop.title}, Inc.</p>
         </div>
       </div>
     </footer>
