@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { shop } from '@/lib/contents';
+import NextTopLoader from 'nextjs-toploader';
 
 import './globals.css';
 
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} font-sans antialiased bg-gray-50`}>
+        <NextTopLoader color="#00a63e" />
         <Header />
         <main>{children}</main>
         <Footer />

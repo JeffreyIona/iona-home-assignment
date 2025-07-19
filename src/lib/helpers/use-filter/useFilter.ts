@@ -1,8 +1,9 @@
 import { SORT_OPTIONS } from '@/lib/constants';
 import { SortKey } from '@/lib/types';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import numeric from '../numeric';
+import { useRouter } from 'nextjs-toploader/app';
 
 type FilterProps = {
   sortBy?: SortKey;
