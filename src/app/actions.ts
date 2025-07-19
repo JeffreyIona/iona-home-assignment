@@ -1,15 +1,16 @@
 'use server';
 
-import { API_BASE_URL } from '@/lib/constants';
+import { API_BASE_URL, FETCH_CACHE } from '@/lib/constants';
 import { getFilterParams } from '@/lib/helpers/filters';
 import { idFromSlug } from '@/lib/helpers/id-from-slug';
 import { Category, Product, ProductResponse, QueryParams } from '@/lib/types';
 
 export const fetchCategories = async (): Promise<Category[]> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/products/categories`, {
-      cache: 'no-store',
-    });
+    const response = await fetch(
+      `${API_BASE_URL}/products/categories`,
+      FETCH_CACHE
+    );
 
     if (!response.ok) {
       throw new Error('Failed to fetch categories');
@@ -24,9 +25,10 @@ export const fetchCategories = async (): Promise<Category[]> => {
 
 export const fetchCategoryList = async (): Promise<string[]> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/products/category-list`, {
-      cache: 'no-store',
-    });
+    const response = await fetch(
+      `${API_BASE_URL}/products/category-list`,
+      FETCH_CACHE
+    );
 
     if (!response.ok) {
       throw new Error('Failed to fetch categories');
@@ -70,9 +72,10 @@ export const fetchProducts = async (
   try {
     const filters = getFilterParams(query);
 
-    const response = await fetch(`${API_BASE_URL}/products${filters}`, {
-      cache: 'no-store',
-    });
+    const response = await fetch(
+      `${API_BASE_URL}/products${filters}`,
+      FETCH_CACHE
+    );
 
     if (!response.ok) {
       throw new Error('Failed to fetch products');
@@ -91,9 +94,10 @@ export const fetchProductSearch = async (
   try {
     const filters = getFilterParams(query);
 
-    const response = await fetch(`${API_BASE_URL}/products/search${filters}`, {
-      cache: 'no-store',
-    });
+    const response = await fetch(
+      `${API_BASE_URL}/products/search${filters}`,
+      FETCH_CACHE
+    );
 
     if (!response.ok) {
       throw new Error('Failed to fetch product search results');
@@ -109,9 +113,7 @@ export const fetchProductSearch = async (
 export const fetchProductBySlug = async (slug: string): Promise<Product> => {
   try {
     const id = idFromSlug(slug);
-    const response = await fetch(`${API_BASE_URL}/products/${id}`, {
-      cache: 'no-store',
-    });
+    const response = await fetch(`${API_BASE_URL}/products/${id}`, FETCH_CACHE);
 
     if (!response.ok) {
       throw new Error('Failed to fetch product result');

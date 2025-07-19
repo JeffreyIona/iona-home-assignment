@@ -16,3 +16,9 @@ export const LOCALES = {
 };
 
 export const PRODUCT_LIMIT = 16;
+
+export const FETCH_CACHE = {
+  next: {
+    revalidate: 3600,
+  },
+};
