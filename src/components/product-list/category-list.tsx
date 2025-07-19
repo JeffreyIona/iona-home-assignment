@@ -17,6 +17,8 @@ export default function CategoryList({
   const [expand, setExpand] = useState(false);
   return (
     <div {...props}>
+      <h2 className="sr-only">Categories</h2>
+
       <div
         className={cn(
           'overflow-y-hidden transition-all duration-500',

@@ -6,6 +6,9 @@ import CategoryList from './category-list';
 import FilterSort from './filter-sort';
 import Banner from '../banner';
 import Pagination from '../pagination';
+import MobileCategoryList from './mobile-category-list';
+import { useState } from 'react';
+import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/outline';
 
 type ProductListProps = {
   category?: Category;
@@ -20,8 +23,15 @@ export default function ProductList({
   products = [],
   totalPages = 1,
 }: ProductListProps) {
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
   return (
     <section>
+      <MobileCategoryList
+        categories={categories}
+        open={mobileFiltersOpen}
+        onToggleOpen={setMobileFiltersOpen}
+      />
       <div className="bg-white">
         {category ? (
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -43,12 +53,19 @@ export default function ProductList({
         <div className="border-t border-b border-gray-200">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between py-2">
-              <h2
-                id="results-heading"
-                className="font-bold tracking-tight text-gray-900"
-              >
-                Categories
-              </h2>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  className="flex gap-2 items-center font-bold tracking-tight text-gray-900 cursor-pointer lg:cursor-default"
+                  onClick={() => setMobileFiltersOpen(true)}
+                >
+                  Categories
+                  <AdjustmentsHorizontalIcon
+                    aria-hidden="true"
+                    className="size-5 lg:hidden"
+                  />
+                </button>
+              </div>
 
               <div className="flex items-center">
                 <FilterSort />
@@ -59,7 +76,7 @@ export default function ProductList({
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div aria-labelledby="results-heading" className="pt-6 pb-24">
+        <div className="pt-6 pb-24">
           <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
             <CategoryList
               categories={categories}
