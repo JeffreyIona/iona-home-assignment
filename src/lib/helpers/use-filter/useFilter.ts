@@ -1,3 +1,5 @@
+'use client';
+
 import { SORT_OPTIONS } from '@/lib/constants';
 import { SortKey } from '@/lib/types';
 import { useSearchParams } from 'next/navigation';

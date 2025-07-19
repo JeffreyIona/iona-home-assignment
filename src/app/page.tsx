@@ -4,9 +4,9 @@ import { getPaginationQuery, getSortQuery } from '@/lib/helpers/filters';
 import { PRODUCT_LIMIT } from '@/lib/constants';
 
 type Props = {
-  searchParams: {
+  searchParams: Promise<{
     [key: string]: string | undefined;
-  };
+  }>;
 };
 
 export default async function Home({ searchParams }: Props) {

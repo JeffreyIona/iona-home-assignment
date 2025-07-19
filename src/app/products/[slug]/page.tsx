@@ -5,12 +5,12 @@ import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     [key: string]: string | undefined;
-  };
+  }>;
 };
 
 // Metadata generator for dynamic title, description, etc.

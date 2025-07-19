@@ -6,8 +6,9 @@ import { shop } from '@/lib/contents';
 import NextTopLoader from 'nextjs-toploader';
 
 import './globals.css';
+import { Suspense } from 'react';
 
-export const inter = Inter({
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
 });
@@ -26,7 +27,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} font-sans antialiased bg-gray-50`}>
         <NextTopLoader color="#00a63e" />
-        <Header />
+        <Suspense>
+          <Header />
+        </Suspense>
         <main>{children}</main>
         <Footer />
       </body>

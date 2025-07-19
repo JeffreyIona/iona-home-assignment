@@ -10,12 +10,12 @@ import { PRODUCT_LIMIT } from '@/lib/constants';
 import { Metadata } from 'next';
 
 type Props = {
-  params: {
+  params: Promise<{
     categorySlug: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     [key: string]: string | undefined;
-  };
+  }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
