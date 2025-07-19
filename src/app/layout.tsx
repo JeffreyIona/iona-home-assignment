@@ -12,7 +12,7 @@ export const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: shop.meta_title,
+  title: { default: shop.meta_title, template: `%s | ${shop.title}` },
   description: shop.description,
 };
 

@@ -4,12 +4,11 @@ import { Category, Product } from '@/lib/types';
 import ProductCard from './product-card';
 import CategoryList from './category-list';
 import FilterSort from './filter-sort';
-import { shop } from '@/lib/contents';
 import Banner from '../banner';
 import Pagination from '../pagination';
 
 type ProductListProps = {
-  category?: string;
+  category?: Category;
   categories: Category[];
   products: Product[];
   totalPages?: number;
@@ -27,10 +26,14 @@ export default function ProductList({
         {category ? (
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-              {categories.find((c) => c.slug === category)?.name ?? 'Products'}
+              {category.name ?? 'Products'}
             </h1>
             <p className="mt-4 max-w-xl text-sm text-gray-700">
-              {shop.description}
+              Explore our wide range of high-quality{' '}
+              {category?.name.toLowerCase()} designed for style, performance,
+              and value. Whether you&apos;re searching for the latest trends or
+              timeless essentials, our {category?.name.toLowerCase()} collection
+              has something for everyone.
             </p>
           </div>
         ) : (

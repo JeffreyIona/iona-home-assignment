@@ -26,7 +26,7 @@ export default function Search() {
 
       <button
         type="submit"
-        className="block lg:hidden rounded-md bg-green-600 p-2 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        className="block lg:hidden rounded-md bg-green-600 p-2 text-white hover:bg-primary-glow focus:outline-none focus:ring-2 focus:ring-primary-fade"
       >
         Search
       </button>
