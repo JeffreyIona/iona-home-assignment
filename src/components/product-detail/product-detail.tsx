@@ -50,7 +50,7 @@ export default function ProductDetail({ product }: ProductDetail) {
                         alt={`${product.title} image ${idx} of ${product.images.length}`}
                         src={src}
                         fill
-                        sizes="50vw"
+                        sizes="22vw"
                         priority
                       />
                     </span>
@@ -71,7 +71,7 @@ export default function ProductDetail({ product }: ProductDetail) {
                       alt={`${product.title} image ${idx} of ${product.images.length}`}
                       src={src}
                       fill
-                      sizes="50vw"
+                      sizes="(max-width: 768px) 50vw, 100vw"
                       priority
                     />
                   </div>
