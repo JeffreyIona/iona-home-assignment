@@ -2,7 +2,8 @@
 
 import { API_BASE_URL } from '@/lib/constants';
 import { getFilterParams } from '@/lib/helpers/filters';
-import { Category, ProductResponse, QueryParams } from '@/lib/types';
+import { idFromSlug } from '@/lib/helpers/id-from-slug';
+import { Category, Product, ProductResponse, QueryParams } from '@/lib/types';
 
 export const fetchCategories = async (): Promise<Category[]> => {
   try {
@@ -101,6 +102,24 @@ export const fetchProductSearch = async (
     return response.json();
   } catch (error) {
     console.error('Error fetching product search results:', error);
+    throw error;
+  }
+};
+
+export const fetchProductBySlug = async (slug: string): Promise<Product> => {
+  try {
+    const id = idFromSlug(slug);
+    const response = await fetch(`${API_BASE_URL}/products/${id}`, {
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch product result');
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching product result:', error);
     throw error;
   }
 };
