@@ -9,7 +9,7 @@ type FilterProps = {
   page?: number;
   q?: string | null;
   // Add more filter properties as needed
-}
+};
 
 const filterKeys = ['sortBy', 'page', 'q'] as const;
 export type FilterKey = (typeof filterKeys)[number];
