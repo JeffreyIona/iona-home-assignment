@@ -1,5 +1,5 @@
-import { LOCALES } from "@/lib/constants"
-import { shop } from "@/lib/contents"
+import { LOCALES } from '@/lib/constants';
+import { shop } from '@/lib/contents';
 
 const footerNavigation = {
   account: [
@@ -27,13 +27,16 @@ const footerNavigation = {
     { name: 'Instagram', href: '#' },
     { name: 'Pinterest', href: '#' },
   ],
-}
+};
 
 const year = new Date().getFullYear();
 
 export default function Footer() {
   return (
-    <footer aria-labelledby="footer-heading" className="bg-white border-t border-gray-200">
+    <footer
+      aria-labelledby="footer-heading"
+      className="bg-white border-t border-gray-200"
+    >
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
@@ -45,7 +48,10 @@ export default function Footer() {
               <ul role="list" className="mt-6 space-y-6">
                 {footerNavigation.account.map((item) => (
                   <li key={item.name} className="text-sm">
-                    <a href={item.href} className="text-gray-500 hover:text-gray-600">
+                    <a
+                      href={item.href}
+                      className="text-gray-500 hover:text-gray-600"
+                    >
                       {item.name}
                     </a>
                   </li>
@@ -57,7 +63,10 @@ export default function Footer() {
               <ul role="list" className="mt-6 space-y-6">
                 {footerNavigation.service.map((item) => (
                   <li key={item.name} className="text-sm">
-                    <a href={item.href} className="text-gray-500 hover:text-gray-600">
+                    <a
+                      href={item.href}
+                      className="text-gray-500 hover:text-gray-600"
+                    >
                       {item.name}
                     </a>
                   </li>
@@ -71,7 +80,10 @@ export default function Footer() {
               <ul role="list" className="mt-6 space-y-6">
                 {footerNavigation.company.map((item) => (
                   <li key={item.name} className="text-sm">
-                    <a href={item.href} className="text-gray-500 hover:text-gray-600">
+                    <a
+                      href={item.href}
+                      className="text-gray-500 hover:text-gray-600"
+                    >
                       {item.name}
                     </a>
                   </li>
@@ -83,7 +95,10 @@ export default function Footer() {
               <ul role="list" className="mt-6 space-y-6">
                 {footerNavigation.connect.map((item) => (
                   <li key={item.name} className="text-sm">
-                    <a href={item.href} className="text-gray-500 hover:text-gray-600">
+                    <a
+                      href={item.href}
+                      className="text-gray-500 hover:text-gray-600"
+                    >
                       {item.name}
                     </a>
                   </li>
@@ -97,9 +112,11 @@ export default function Footer() {
           <div className="flex items-center justify-center text-sm text-gray-500">
             <p>{LOCALES['en']}</p>
           </div>
-          <p className="mt-6 text-center text-sm text-gray-500 sm:mt-0">&copy; {year} {shop.title}, Inc.</p>
+          <p className="mt-6 text-center text-sm text-gray-500 sm:mt-0">
+            &copy; {year} {shop.title}, Inc.
+          </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }

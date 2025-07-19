@@ -1,6 +1,6 @@
-import { cn } from "@/lib/helpers/styles";
-import Link from "next/link";
-import { ComponentProps } from "react";
+import { cn } from '@/lib/helpers/styles';
+import Link from 'next/link';
+import { ComponentProps } from 'react';
 
 type LinkProps = ComponentProps<typeof Link> & {
   disabled?: boolean;
@@ -26,7 +26,10 @@ export default function Button({
   if (isDisabled) {
     return (
       <span
-        className={cn('inline-flex h-10 items-center rounded-md border px-3 border-gray-300 bg-white text-gray-500 cursor-not-allowed', className)}
+        className={cn(
+          'inline-flex h-10 items-center rounded-md border px-3 border-gray-300 bg-white text-gray-500 cursor-not-allowed',
+          className
+        )}
         {...props}
       >
         {children}

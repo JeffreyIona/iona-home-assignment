@@ -1,4 +1,4 @@
-import { SORT_OPTIONS } from "./constants";
+import { SORT_OPTIONS } from './constants';
 
 export type Product = {
   id: number;
@@ -51,7 +51,7 @@ export type ProductResponse = {
   total: number;
   skip: number;
   limit: number;
-}
+};
 
 export type SortKey = keyof typeof SORT_OPTIONS;
 

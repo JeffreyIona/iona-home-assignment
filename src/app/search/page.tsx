@@ -1,7 +1,7 @@
-import { fetchProductSearch } from "../actions";
-import { getPaginationQuery, getSortQuery } from "@/lib/helpers/filters";
-import SearchList from "@/components/search-list";
-import { PRODUCT_LIMIT } from "@/lib/constants";
+import { fetchProductSearch } from '../actions';
+import { getPaginationQuery, getSortQuery } from '@/lib/helpers/filters';
+import SearchList from '@/components/search-list';
+import { PRODUCT_LIMIT } from '@/lib/constants';
 
 type Props = {
   searchParams: {
@@ -21,7 +21,7 @@ export default async function SearchPage({ searchParams }: Props) {
     <SearchList
       searchQuery={q}
       products={productResponse.products ?? []}
-      totalPages={Math.floor(productResponse.total/PRODUCT_LIMIT)}
+      totalPages={Math.floor(productResponse.total / PRODUCT_LIMIT)}
     />
   );
 }

@@ -1,8 +1,12 @@
-import ProductList from "@/components/product-list";
-import { fetchCategories, fetchCategoryList, fetchProductsByCategory } from "../actions";
-import { notFound } from "next/navigation";
-import { getPaginationQuery, getSortQuery } from "@/lib/helpers/filters";
-import { PRODUCT_LIMIT } from "@/lib/constants";
+import ProductList from '@/components/product-list';
+import {
+  fetchCategories,
+  fetchCategoryList,
+  fetchProductsByCategory,
+} from '../actions';
+import { notFound } from 'next/navigation';
+import { getPaginationQuery, getSortQuery } from '@/lib/helpers/filters';
+import { PRODUCT_LIMIT } from '@/lib/constants';
 
 type Props = {
   params: {
@@ -33,7 +37,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       category={category}
       categories={categories ?? []}
       products={productResponse.products ?? []}
-      totalPages={Math.floor(productResponse.total/PRODUCT_LIMIT)}
+      totalPages={Math.floor(productResponse.total / PRODUCT_LIMIT)}
     />
   );
 }

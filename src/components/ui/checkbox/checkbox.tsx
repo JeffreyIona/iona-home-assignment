@@ -1,8 +1,8 @@
-import { ComponentProps } from "react"
+import { ComponentProps } from 'react';
 
-type CheckboxProps = ComponentProps<"input">;
+type CheckboxProps = ComponentProps<'input'>;
 
-export default function Checkbox({ ...props }:CheckboxProps) {
+export default function Checkbox({ ...props }: CheckboxProps) {
   return (
     <div className="group grid size-4 grid-cols-1">
       <input
@@ -30,5 +30,5 @@ export default function Checkbox({ ...props }:CheckboxProps) {
         />
       </svg>
     </div>
-  )
+  );
 }

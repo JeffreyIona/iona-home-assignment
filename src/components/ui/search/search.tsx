@@ -1,14 +1,19 @@
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useSearchParams } from 'next/navigation';
 
 export default function Search() {
   const searchParams = useSearchParams();
 
   return (
-    <form action="/search" method="get" className='w-full flex flex-col gap-4'>
-      <label htmlFor="search" className="sr-only">Search products</label>
-      <div  className="bg-gray-50 relative flex items-center w-full">
-        <MagnifyingGlassIcon aria-hidden="true" className="absolute left-2.5 h-5 w-5 text-gray-400" />
+    <form action="/search" method="get" className="w-full flex flex-col gap-4">
+      <label htmlFor="search" className="sr-only">
+        Search products
+      </label>
+      <div className="bg-gray-50 relative flex items-center w-full">
+        <MagnifyingGlassIcon
+          aria-hidden="true"
+          className="absolute left-2.5 h-5 w-5 text-gray-400"
+        />
         <input
           type="text"
           name="q"
@@ -26,5 +31,5 @@ export default function Search() {
         Search
       </button>
     </form>
-  )
+  );
 }

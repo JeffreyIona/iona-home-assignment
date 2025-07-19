@@ -1,26 +1,31 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
+import { useState } from 'react';
+import { Dialog, DialogPanel } from '@headlessui/react';
 import {
-  Dialog,
-  DialogPanel,
-} from '@headlessui/react'
-import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import Logo from '../ui/logo'
-import Search from '../ui/search/search'
+  Bars3Icon,
+  MagnifyingGlassIcon,
+  ShoppingBagIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
+import Logo from '../ui/logo';
+import Search from '../ui/search/search';
 
 const navigation = [
   { name: 'Account', href: '#' },
   { name: 'Help', href: '#' },
-]
+];
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <>
       <header className="bg-white border-b border-b-gray-200">
-        <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+        <nav
+          aria-label="Global"
+          className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        >
           <Logo />
           <div className="flex lg:hidden gap-4">
             <button
@@ -40,12 +45,16 @@ export default function Header() {
               <Bars3Icon aria-hidden="true" className="size-6" />
             </button>
           </div>
-          <div className='hidden lg:flex lg:flex-1 lg:max-w-1/2'>
+          <div className="hidden lg:flex lg:flex-1 lg:max-w-1/2">
             <Search />
           </div>
           <div className="hidden lg:flex lg:gap-x-12 lg:items-center">
             {navigation.map((item) => (
-              <a key={item.name} href={item.href} className="text-sm/6 font-semibold text-gray-900">
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-sm/6 font-semibold text-gray-900"
+              >
                 {item.name}
               </a>
             ))}
@@ -55,7 +64,11 @@ export default function Header() {
             </a>
           </div>
         </nav>
-        <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
+        <Dialog
+          open={mobileMenuOpen}
+          onClose={setMobileMenuOpen}
+          className="lg:hidden"
+        >
           <div className="fixed inset-0 z-50" />
           <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
@@ -90,7 +103,10 @@ export default function Header() {
                     href="#"
                     className="-mx-3 rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 items-center flex gap-3"
                   >
-                    <ShoppingBagIcon aria-hidden="true" className="-mt-1 shrink-0 size-6 text-gray-400" />
+                    <ShoppingBagIcon
+                      aria-hidden="true"
+                      className="-mt-1 shrink-0 size-6 text-gray-400"
+                    />
                     Cart
                   </a>
                 </div>
@@ -100,5 +116,5 @@ export default function Header() {
         </Dialog>
       </header>
     </>
-  )
+  );
 }

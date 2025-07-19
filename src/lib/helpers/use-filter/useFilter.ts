@@ -1,8 +1,8 @@
-import { SORT_OPTIONS } from "@/lib/constants";
-import { SortKey } from "@/lib/types";
-import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import numeric from "../numeric";
+import { SORT_OPTIONS } from '@/lib/constants';
+import { SortKey } from '@/lib/types';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import numeric from '../numeric';
 
 type FilterProps = {
   sortBy?: SortKey;
@@ -23,9 +23,9 @@ export default function useFilter() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [filters, setFilters] = useState<FilterProps>({
-    sortBy: getSortKey(searchParams.get("sortBy")),
-    page: numeric(searchParams.get("page")),
-    q: searchParams.get("q"),
+    sortBy: getSortKey(searchParams.get('sortBy')),
+    page: numeric(searchParams.get('page')),
+    q: searchParams.get('q'),
   });
 
   const updateFilter = (newFilters: FilterProps) => {
@@ -38,15 +38,15 @@ export default function useFilter() {
     });
 
     if (getSortKey(updateFilter.sortBy as string)) {
-      params.set("sortBy", updateFilter.sortBy!);
+      params.set('sortBy', updateFilter.sortBy!);
     }
 
     if (updateFilter.page && updateFilter.page > 0) {
-      params.set("page", String(updateFilter.page));
+      params.set('page', String(updateFilter.page));
     }
 
     if (updateFilter.q) {
-      params.set("q", updateFilter.q);
+      params.set('q', updateFilter.q);
     }
 
     setFilters(updateFilter);
@@ -55,9 +55,9 @@ export default function useFilter() {
 
   useEffect(() => {
     setFilters({
-      sortBy: getSortKey(searchParams.get("sortBy")),
-      page: numeric(searchParams.get("page")),
-      q: searchParams.get("q"),
+      sortBy: getSortKey(searchParams.get('sortBy')),
+      page: numeric(searchParams.get('page')),
+      q: searchParams.get('q'),
     });
   }, [searchParams]);
 

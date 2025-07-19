@@ -1,9 +1,9 @@
-import { SORT_OPTIONS } from "@/lib/constants";
-import { cn } from "@/lib/helpers/styles";
-import useFilter from "@/lib/helpers/use-filter/useFilter";
-import { SortKey } from "@/lib/types";
-import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { SORT_OPTIONS } from '@/lib/constants';
+import { cn } from '@/lib/helpers/styles';
+import useFilter from '@/lib/helpers/use-filter/useFilter';
+import { SortKey } from '@/lib/types';
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 export default function FilterSort() {
   const { filters, updateFilter } = useFilter();
@@ -13,7 +13,9 @@ export default function FilterSort() {
         <select
           className="block w-full rounded-md border-gray-300 py-2 px-2 text-right text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
           value={filters.sortBy}
-          onChange={(e) => updateFilter({ sortBy: e.target.value as SortKey, page: undefined })}
+          onChange={(e) =>
+            updateFilter({ sortBy: e.target.value as SortKey, page: undefined })
+          }
         >
           <option value="">Sort</option>
           {Object.keys(SORT_OPTIONS).map((key) => (
@@ -43,9 +45,11 @@ export default function FilterSort() {
             <div className="py-1">
               <MenuItem>
                 <button
-                  type='button'
-                  className='text-gray-500 block w-full text-left px-4 py-2 text-sm data-focus:bg-gray-100 data-focus:outline-hidden'
-                  onClick={() => updateFilter({ sortBy: undefined, page: undefined })}
+                  type="button"
+                  className="text-gray-500 block w-full text-left px-4 py-2 text-sm data-focus:bg-gray-100 data-focus:outline-hidden"
+                  onClick={() =>
+                    updateFilter({ sortBy: undefined, page: undefined })
+                  }
                 >
                   Sort
                 </button>
@@ -53,12 +57,16 @@ export default function FilterSort() {
               {Object.keys(SORT_OPTIONS).map((key) => (
                 <MenuItem key={key}>
                   <button
-                    type='button'
+                    type="button"
                     className={cn(
-                      filters.sortBy === key ? 'font-medium text-gray-900' : 'text-gray-500',
-                      'block w-full text-left px-4 py-2 text-sm data-focus:bg-gray-100 data-focus:outline-hidden',
+                      filters.sortBy === key
+                        ? 'font-medium text-gray-900'
+                        : 'text-gray-500',
+                      'block w-full text-left px-4 py-2 text-sm data-focus:bg-gray-100 data-focus:outline-hidden'
                     )}
-                    onClick={() => updateFilter({ sortBy: key as SortKey, page: undefined })}
+                    onClick={() =>
+                      updateFilter({ sortBy: key as SortKey, page: undefined })
+                    }
                   >
                     {SORT_OPTIONS[key as SortKey]}
                   </button>
@@ -69,5 +77,5 @@ export default function FilterSort() {
         </Menu>
       </div>
     </>
-  )
+  );
 }
